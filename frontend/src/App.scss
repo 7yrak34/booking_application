@@ -1,11 +1,34 @@
+@import './styles/reset';
+@import './styles/vars';
+
+@font-face {
+  font-family: 'Gotham Pro';
+  src: url('../public/fonts/gothampro_light.ttf');
+}
+
+@font-face {
+  font-family: 'Gotham Pro';
+  src: url('../public/fonts/gothampro_medium.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Gotham Pro';
+  src: url('../public/fonts/gothampro_bold.ttf');
+  font-weight: 700;
+}
+
+html {
+  font-family: 'Gotham Pro', Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+  color: $text-color;
+}
+
+
 body {
   margin: 0;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-h1 {
-  margin: 0;
 }
