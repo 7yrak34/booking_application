@@ -1,7 +1,6 @@
 import './App.scss';
+import { Outlet } from 'react-router-dom';
 
-const App = () => (
-  <h1>Hello World!</h1>
+export const App = () => (
+  <Outlet />
 );
-
-export default App;
