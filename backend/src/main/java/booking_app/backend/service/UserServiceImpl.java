@@ -13,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Set;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -30,8 +32,10 @@ public class UserServiceImpl implements UserService {
                     + " already exists");
         }
         User user = userMapper.toModel(registrationRequestDto);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(registrationRequestDto.getPassword()));
         user.setRole(User.UserRole.ROLE_USER);
+        user.setNumberPhone(registrationRequestDto.getNumberPhone());
+        user.setCity(registrationRequestDto.getCity());
         log.info("New users was registered with id {}", user.getId());
         return userMapper.toDto(userRepository.save(user));
     }
@@ -63,6 +67,20 @@ public class UserServiceImpl implements UserService {
             throw new PasswordException("Wrong old password, try again.");
         }
         user.setPassword(passwordEncoder.encode(roleRequestDto.getNewPassword()));
+        userRepository.save(user);
+        log.info("User's password with id {} was successfully changed", user.getId());
         return new PasswordResponse("Your password was successfully changed.");
+    }
+
+    @Override
+    @Transactional
+    public CardResponse addBankCardToUser(String bankCard, Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+        Set<String> userCards = user.getBankCards();
+        userCards.add(bankCard);
+        userRepository.save(user);
+        log.info("User's bank card with id {} was successfully added", user.getId());
+        return new CardResponse("Bank card was successfully added.");
     }
 }

@@ -14,4 +14,6 @@ public interface UserService {
     UserDto updateUserProfile(UpdateUserProfileRequestDto userProfileRequestDto, Long id);
 
     PasswordResponse changeUserPassword(ChangeUserPasswordRequestDto roleRequestDto, Long id);
+
+    CardResponse addBankCardToUser(String bankCard, Long id);
 }

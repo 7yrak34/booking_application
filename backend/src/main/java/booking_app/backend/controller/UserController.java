@@ -1,9 +1,6 @@
 package booking_app.backend.controller;
 
-import booking_app.backend.dto.ChangeUserPasswordRequestDto;
-import booking_app.backend.dto.PasswordResponse;
-import booking_app.backend.dto.UpdateUserProfileRequestDto;
-import booking_app.backend.dto.UserDto;
+import booking_app.backend.dto.*;
 import booking_app.backend.model.User;
 import booking_app.backend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -57,5 +54,17 @@ public class UserController {
         PasswordResponse response = userService.changeUserPassword(changeUserPasswordRequestDto,
                 user.getId());
         return ResponseEntity.ok(response);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PatchMapping("/me/bank-cards")
+    @Operation(summary = "Add or update bank cards", description = "Add or update bank cards "
+            + "to the user's profile")
+    public ResponseEntity<CardResponse> addBankCards(
+            @RequestBody String bankCard,
+            Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        CardResponse updatedUserDto = userService.addBankCardToUser(bankCard, user.getId());
+        return ResponseEntity.ok(updatedUserDto);
     }
 }
