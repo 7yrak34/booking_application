@@ -13,6 +13,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Tag(name = "User management", description = "Endpoints for managing users "
         + "authentication and profiles")
@@ -66,5 +69,17 @@ public class UserController {
         User user = (User) authentication.getPrincipal();
         CardResponse updatedUserDto = userService.addBankCardToUser(bankCard, user.getId());
         return ResponseEntity.ok(updatedUserDto);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PatchMapping("/me/photo")
+    @Operation(summary = "Change profile photo", description = "Change the profile photo of "
+            + "the authenticated user")
+    public ResponseEntity<ImageResponse> changeUserPhoto(
+            @RequestParam("image") MultipartFile image,
+            Authentication authentication) throws IOException {
+        User user = (User) authentication.getPrincipal();
+        ImageResponse responseMessage = userService.changeUserPhoto(image, user.getId());
+        return ResponseEntity.ok(responseMessage);
     }
 }

@@ -12,7 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Set;
 
 @Service
@@ -83,4 +85,22 @@ public class UserServiceImpl implements UserService {
         log.info("User's bank card with id {} was successfully added", user.getId());
         return new CardResponse("Bank card was successfully added.");
     }
+
+    @Override
+    @Transactional
+    public ImageResponse changeUserPhoto(MultipartFile image, Long id) throws IOException {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+        if (image.isEmpty()) {
+            throw new IllegalArgumentException("Image file cannot be empty");
+        }
+        String contentType = image.getContentType();
+        if (!contentType.startsWith("image/")) {
+            throw new IllegalArgumentException("File must be an image");
+        }
+        user.setImage(image.getBytes());
+        userRepository.save(user);
+        return new ImageResponse("Profile photo successfully updated.");
+    }
 }
+
