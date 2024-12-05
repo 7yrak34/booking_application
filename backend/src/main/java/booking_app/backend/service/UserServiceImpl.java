@@ -1,10 +1,8 @@
 package booking_app.backend.service;
 
-import booking_app.backend.dto.UpdateUserProfileRequestDto;
-import booking_app.backend.dto.UserDto;
-import booking_app.backend.dto.UserRegistrationRequestDto;
-import booking_app.backend.dto.UserResponseDto;
+import booking_app.backend.dto.*;
 import booking_app.backend.exception.EntityNotFoundException;
+import booking_app.backend.exception.PasswordException;
 import booking_app.backend.exception.RegistrationException;
 import booking_app.backend.mapper.UserMapper;
 import booking_app.backend.model.User;
@@ -53,5 +51,18 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userProfileRequestDto.getEmail());
         log.info("User's profile with id {} was changed", user.getId());
         return userMapper.toUserDto(userRepository.save(user));
+    }
+
+    @Override
+    @Transactional
+    public PasswordResponse changeUserPassword(ChangeUserPasswordRequestDto roleRequestDto, Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+        String actualUserPassword = user.getPassword();
+        if (!passwordEncoder.matches(roleRequestDto.getOldPassword(), actualUserPassword)) {
+            throw new PasswordException("Wrong old password, try again.");
+        }
+        user.setPassword(passwordEncoder.encode(roleRequestDto.getNewPassword()));
+        return new PasswordResponse("Your password was successfully changed.");
     }
 }

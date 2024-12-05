@@ -1,5 +1,7 @@
 package booking_app.backend.controller;
 
+import booking_app.backend.dto.ChangeUserPasswordRequestDto;
+import booking_app.backend.dto.PasswordResponse;
 import booking_app.backend.dto.UpdateUserProfileRequestDto;
 import booking_app.backend.dto.UserDto;
 import booking_app.backend.model.User;
@@ -9,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
@@ -41,5 +44,18 @@ public class UserController {
             Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return userService.updateUserProfile(userProfileRequestDto, user.getId());
+    }
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @PatchMapping("/me/password")
+    @Operation(summary = "Change users' password", description = "Change the password"
+            + " of users")
+    public ResponseEntity<PasswordResponse> changeUserPassword(
+            @RequestBody @Valid ChangeUserPasswordRequestDto changeUserPasswordRequestDto,
+            Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        PasswordResponse response = userService.changeUserPassword(changeUserPasswordRequestDto,
+                user.getId());
+        return ResponseEntity.ok(response);
     }
 }
