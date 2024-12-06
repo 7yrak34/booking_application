@@ -1,12 +1,12 @@
 .icon {
-  display: block;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
   &__menu {
+    display: block;
+    width: 24px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     &--active {
       & :nth-child(1) {
         transform: translateY(280%) rotate(45deg);
