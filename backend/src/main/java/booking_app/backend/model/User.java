@@ -33,6 +33,17 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole role;
     private boolean isDeleted = false;
+    @Column(length = 13, nullable = false)
+    private String numberPhone;
+    @Column(length = 100, nullable = false)
+    private String city;
+    @ElementCollection
+    @CollectionTable(name = "user_bank_cards", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "bank_card")
+    private Set<String> bankCards;
+    @Lob
+    @Column(name = "image", columnDefinition = "BLOB")
+    private byte[] image;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -63,7 +74,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return !isDeleted;
     }
-
 
     public enum UserRole {
         ROLE_ADMINISTRATOR,

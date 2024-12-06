@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 02-add-new-columns-to-users
+      author: nikita_boyko
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: number_phone
+                  type: VARCHAR(15)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: city
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: image
+                  type: BLOB
+                  constraints:
+                    nullable: true
+        - createTable:
+            tableName: user_bank_cards
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: bank_card
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: user_bank_cards
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_user_bank_cards_user_id

@@ -3,6 +3,7 @@ package booking_app.backend.dto;
 import booking_app.backend.validation.FieldMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
@@ -19,4 +20,9 @@ public class UserRegistrationRequestDto {
     private String firstName;
     @NotBlank
     private String lastName;
+    @NotBlank
+    @Size(max = 13)
+    private String numberPhone;
+    @NotBlank
+    private String city;
 }
