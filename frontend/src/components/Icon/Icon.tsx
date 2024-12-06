@@ -19,13 +19,6 @@ export const Icon: React.FC<Props> = ({
   isActive = false,
   color = IconColor.whiteColor,
 }) => {
-  const menuLinesQuantity = 3;
-  const menuLines = [];
-
-  for (let i = 0; i < menuLinesQuantity; i++) {
-    menuLines.push(i);
-  }
-
   switch (iconType) {
     case IconType.logo:
       return (
