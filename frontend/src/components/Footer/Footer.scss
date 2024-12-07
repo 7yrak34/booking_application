@@ -1,0 +1,56 @@
+@import '../../styles/imports';
+
+.footer {
+  height: $footer-height;
+  background-color: $footer-color;
+  padding-block: 40px;
+  color: $white-color;
+
+  @include content-padding-inline;
+
+  @include on-desktop {
+    height: $footer-height-desktop;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  &__link {
+    width: fit-content;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+    border-top: 1px solid $white-color;
+
+    @include on-desktop {
+      gap: 0;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__extra-info {
+    display: grid;
+    gap: 5px;
+    font-size: 14px;
+  }
+}

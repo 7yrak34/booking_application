@@ -5,6 +5,7 @@ import { IconType } from '../../types/IconType';
 import { useContext, useState } from 'react';
 import { ScreenSizeContext, ScreenType } from '../ScreenSizeProvider/ScreenSizeProvider';
 import { headerLinks } from '../../helpers/constants';
+import { Logo } from '../Logo';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,9 +13,7 @@ export const Header = () => {
 
   return (
     <header className="header">
-      <Link to="/" className="header__link-logo">
-        <Icon iconType={IconType.logo} />
-      </Link>
+      <Logo />
 
       {screenSize === ScreenType.isMobile && (
         <button
