@@ -1,0 +1,43 @@
+@import '../../styles/imports';
+
+.menu {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: $header-color;
+  height: 0;
+  transition: all 0.7s;
+  border-bottom-left-radius: 200px;
+  border-bottom-right-radius: 200px;
+  font-size: 22px;
+  color: $white-color;
+  font-weight: 600;
+
+  &--active {
+    height: 60vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &__nav {
+    opacity: 0;
+    transition: all 0.2s;
+    pointer-events: none;
+    transform: translateY(-100%);
+
+    &--active {
+      transform: translateY(0);
+      pointer-events: all;
+      transition: all 1s;
+      opacity: 1;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+}
