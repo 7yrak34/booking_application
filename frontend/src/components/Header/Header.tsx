@@ -30,7 +30,7 @@ export const Header = () => {
         <nav className="header__nav">
           <ul className="header__list">
             {headerLinks.map(({ link, text }) => (
-              <li className="header__item">
+              <li key={text} className="header__item">
                 <Link to={link} className="header__link">
                   {text}
                 </Link>
