@@ -10,6 +10,7 @@ export const Footer = () => (
 
         {footerLinks.map(({ link, text }) => (
           <a
+            key={link}
             href={link}
             target="_blank"
             rel="noreferrer"
