@@ -76,7 +76,7 @@ public class User implements UserDetails {
     }
 
     public enum UserRole {
-        ROLE_ADMINISTRATOR,
+        ROLE_ADMIN,
         ROLE_USER
     }
 }

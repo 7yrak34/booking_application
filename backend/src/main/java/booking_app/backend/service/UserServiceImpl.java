@@ -110,4 +110,3 @@ public class UserServiceImpl implements UserService {
         return new ImageResponse("Profile photo successfully updated.");
     }
 }
-
