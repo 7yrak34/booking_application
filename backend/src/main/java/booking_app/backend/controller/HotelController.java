@@ -2,7 +2,6 @@ package booking_app.backend.controller;
 
 import booking_app.backend.dto.CreateHotelDto;
 import booking_app.backend.dto.HotelDto;
-import booking_app.backend.model.Hotel;
 import booking_app.backend.service.HotelService;
 import booking_app.backend.service.ImageUtils;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,7 +12,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -24,6 +22,7 @@ import java.util.List;
 @RequestMapping("/hotels")
 public class HotelController {
     private final HotelService hotelService;
+
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Operation(summary = "Create a hotel", description = "Create a hotel and add it to the DB.")
@@ -76,6 +75,7 @@ public class HotelController {
         hotelService.addImageToHotel(id, image);
         return ResponseEntity.ok("Image added successfully");
     }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Operation(summary = "Delete a hotel", description = "Delete a hotel by it's id.")
