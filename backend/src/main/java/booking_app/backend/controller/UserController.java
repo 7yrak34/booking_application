@@ -2,6 +2,7 @@ package booking_app.backend.controller;
 
 import booking_app.backend.dto.*;
 import booking_app.backend.model.User;
+import booking_app.backend.service.ImageUtils;
 import booking_app.backend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -13,8 +14,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
+import java.util.List;
 
 @Tag(name = "User management", description = "Endpoints for managing users "
         + "authentication and profiles")
@@ -80,5 +81,15 @@ public class UserController {
         User user = (User) authentication.getPrincipal();
         ImageResponse responseMessage = userService.changeUserPhoto(image, user.getId());
         return ResponseEntity.ok(responseMessage);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @Operation(summary = "Get user photo", description = "Retrieve user photo by it's id.")
+    @GetMapping("/me/photo")
+    public ResponseEntity<List<String>> getHotelImages(Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        List<byte[]> photo = userService.getUserPhoto(user.getId());
+        List<String> base64Images = ImageUtils.convertToBase64(photo);
+        return ResponseEntity.ok(base64Images);
     }
 }
