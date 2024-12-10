@@ -1,9 +1,9 @@
 package booking_app.backend.controller;
 
-import booking_app.backend.dto.UserLoginRequestDto;
-import booking_app.backend.dto.UserLoginResponseDto;
-import booking_app.backend.dto.UserRegistrationRequestDto;
-import booking_app.backend.dto.UserResponseDto;
+import booking_app.backend.dto.user.login.UserLoginRequestDto;
+import booking_app.backend.dto.user.login.UserLoginResponseDto;
+import booking_app.backend.dto.user.login.UserRegistrationRequestDto;
+import booking_app.backend.dto.user.UserResponseDto;
 import booking_app.backend.exception.RegistrationException;
 import booking_app.backend.security.AuthenticationService;
 import booking_app.backend.service.UserService;

@@ -1,4 +1,4 @@
-package booking_app.backend.dto;
+package booking_app.backend.dto.user;
 
 import booking_app.backend.model.User;
 import lombok.Data;

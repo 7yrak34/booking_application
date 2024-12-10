@@ -2,6 +2,13 @@ package booking_app.backend.service;
 
 
 import booking_app.backend.dto.*;
+import booking_app.backend.dto.user.update.ChangeUserPasswordRequestDto;
+import booking_app.backend.dto.user.update.ImageResponse;
+import booking_app.backend.dto.user.update.PasswordResponse;
+import booking_app.backend.dto.user.update.UpdateUserProfileRequestDto;
+import booking_app.backend.dto.user.UserDto;
+import booking_app.backend.dto.user.login.UserRegistrationRequestDto;
+import booking_app.backend.dto.user.UserResponseDto;
 import booking_app.backend.exception.RegistrationException;
 import booking_app.backend.model.User;
 import org.springframework.web.multipart.MultipartFile;

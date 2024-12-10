@@ -1,7 +1,7 @@
 package booking_app.backend.security;
 
-import booking_app.backend.dto.UserLoginRequestDto;
-import booking_app.backend.dto.UserLoginResponseDto;
+import booking_app.backend.dto.user.login.UserLoginRequestDto;
+import booking_app.backend.dto.user.login.UserLoginResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class AuthenticationService {
                 new UsernamePasswordAuthenticationToken(request.email(), request.password())
         );
 
-        String token = jwtUtil.generateToken(authentication.getName());
+        String token = jwtUtil.generateToken(authentication.getName(), authentication.getAuthorities());
         logger.info("User with login {} is authenticated", authentication.getName());
         return new UserLoginResponseDto(token);
     }

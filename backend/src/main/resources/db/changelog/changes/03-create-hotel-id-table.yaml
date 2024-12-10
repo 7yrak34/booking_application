@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 03-create-hotel-id-table.yaml
+      author: KHmil
+      changes:
+        - createTable:
+            tableName: hotels
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    autoIncrement: true
