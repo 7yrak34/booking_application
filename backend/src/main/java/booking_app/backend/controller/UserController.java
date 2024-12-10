@@ -1,12 +1,16 @@
 package booking_app.backend.controller;
 
 import booking_app.backend.dto.*;
+import booking_app.backend.dto.user.update.ChangeUserPasswordRequestDto;
+import booking_app.backend.dto.user.update.ImageResponse;
+import booking_app.backend.dto.user.update.PasswordResponse;
+import booking_app.backend.dto.user.update.UpdateUserProfileRequestDto;
+import booking_app.backend.dto.user.UserDto;
 import booking_app.backend.model.User;
 import booking_app.backend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

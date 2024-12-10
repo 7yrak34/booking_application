@@ -1,4 +1,4 @@
-package booking_app.backend.dto;
+package booking_app.backend.dto.user.update;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

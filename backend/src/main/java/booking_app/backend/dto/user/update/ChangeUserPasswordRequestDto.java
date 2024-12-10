@@ -1,4 +1,4 @@
-package booking_app.backend.dto;
+package booking_app.backend.dto.user.update;
 
 import booking_app.backend.validation.FieldMatch;
 import jakarta.validation.constraints.NotBlank;
