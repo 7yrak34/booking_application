@@ -2,21 +2,17 @@ package booking_app.backend.service;
 
 import booking_app.backend.dto.CreateHotelDto;
 import booking_app.backend.dto.HotelDto;
-import booking_app.backend.dto.ImageResponse;
 import booking_app.backend.exception.EntityNotFoundException;
 import booking_app.backend.mapper.HotelMapper;
 import booking_app.backend.model.Hotel;
-import booking_app.backend.model.User;
 import booking_app.backend.repository.HotelRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -71,7 +67,8 @@ public class HotelServiceImpl implements HotelService {
     @Transactional
     public void addImageToHotel(Long id, MultipartFile image) throws IOException {
         Hotel hotel = hotelRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Hotel not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Hotel with id " + id
+                        + " not found"));
         if (image.isEmpty()) {
             throw new IllegalArgumentException("Hotel file cannot be empty");
         }
