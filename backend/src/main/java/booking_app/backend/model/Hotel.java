@@ -19,19 +19,14 @@ public class Hotel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
     @Column(name = "name")
     private String name;
-
     @Column(name = "address")
     private String address;
-
     @Column(name = "contact_data")
     private String contactData;
-
     @Column(name = "description")
     private String description;
-
     @ElementCollection
     @CollectionTable(name = "hotel_images", joinColumns = @JoinColumn(name = "hotel_id"))
     @Column(name = "image", columnDefinition = "BLOB")
