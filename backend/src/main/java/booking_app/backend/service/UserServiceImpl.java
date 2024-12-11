@@ -12,6 +12,7 @@ import booking_app.backend.exception.EntityNotFoundException;
 import booking_app.backend.exception.PasswordException;
 import booking_app.backend.exception.RegistrationException;
 import booking_app.backend.mapper.UserMapper;
+import booking_app.backend.model.Hotel;
 import booking_app.backend.model.User;
 import booking_app.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -109,5 +112,14 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         return new ImageResponse("Profile photo successfully updated.");
     }
-}
 
+    @Override
+    public List<byte[]> getUserPhoto(Long id) {
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("User not found with id: " + id));
+        if (user.getImage() == null) {
+            return Collections.emptyList();
+        }
+        return List.of(user.getImage());
+    }
+}
