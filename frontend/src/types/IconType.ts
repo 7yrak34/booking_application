@@ -1,6 +1,6 @@
 export enum IconType {
   logo,
-  profile,
+  user,
   close,
   menu,
   location,
@@ -10,4 +10,6 @@ export enum IconType {
   delete,
   heart,
   selectedHeart,
+  plus,
+  minus,
 }
