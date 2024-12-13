@@ -5,6 +5,7 @@ import booking_app.backend.dto.room.RoomRequestDto;
 import booking_app.backend.dto.room.RoomResponseDto;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface RoomService {
 
@@ -17,6 +18,10 @@ public interface RoomService {
     List<RoomDtoWithoutHotelIds> getAllRoomsWithoutHotelIds(Long hotelId, Pageable pageable);
 
     RoomResponseDto updateRoom(Long id, RoomRequestDto requestDto);
+
+    void addRoomImage(Long roomId, MultipartFile imageFile);
+
+    void removeRoomImage(Long roomId, int imageIndex);
 
     void delete(Long id);
 }

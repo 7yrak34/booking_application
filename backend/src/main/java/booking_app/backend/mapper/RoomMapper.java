@@ -16,8 +16,6 @@ import org.springframework.data.domain.Page;
 @Mapper(config = MapperConfig.class)
 public interface RoomMapper {
 
-    @Mapping(target = "image", expression = "java(room.getImage() != null "
-            + "? java.util.Base64.getEncoder().encodeToString(room.getImage()) : null)")
     RoomResponseDto toResponseDto(Room room);
 
     @Mapping(source = "hotelId", target = "hotel.id")

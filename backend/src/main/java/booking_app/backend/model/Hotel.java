@@ -36,6 +36,7 @@ public class Hotel {
     @CollectionTable(name = "hotel_images", joinColumns = @JoinColumn(name = "hotel_id"))
     @Column(name = "image", columnDefinition = "BLOB")
     private List<byte[]> hotelImages = new ArrayList<>();
+    @Column(name = "is_deleted", nullable = false, columnDefinition = "TINYINT(1)")
     private boolean isDeleted = false;
 
     public void addImageToHotel(byte[] image) {

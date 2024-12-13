@@ -7,11 +7,13 @@ import booking_app.backend.exception.EntityNotFoundException;
 import booking_app.backend.mapper.RoomMapper;
 import booking_app.backend.model.Room;
 import booking_app.backend.repository.RoomRepository;
+import java.io.IOException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -57,6 +59,37 @@ public class RoomServiceImpl implements RoomService {
         roomRepository.save(room);
         RoomResponseDto responseDto = roomMapper.toResponseDto(room);
         return responseDto;
+    }
+
+    @Override
+    @Transactional
+    public void addRoomImage(Long roomId, MultipartFile imageFile) {
+        Room room = findRoomById(roomId);
+        if(imageFile.isEmpty()) {
+            throw new IllegalStateException("Image can't be empty");
+        }
+        String contentType = imageFile.getContentType();
+        if (!contentType.startsWith("image/")) {
+            throw new IllegalArgumentException("File must be an image: " + imageFile.getName());
+        }
+        try {
+            room.addImageToRoom(imageFile.getBytes());
+        } catch (IOException e) {
+            throw new RuntimeException("Can't add image to room: " + roomId + e);
+        }
+        roomRepository.save(room);
+    }
+
+    @Override
+    @Transactional
+    public void removeRoomImage(Long roomId, int imageIndex) {
+        Room room = findRoomById(roomId);
+
+        if (imageIndex < 0 || imageIndex >= room.getRoomsImages().size()) {
+            throw new IndexOutOfBoundsException("Invalid image index: " + imageIndex);
+        }
+        room.getRoomsImages().remove(imageIndex);
+        roomRepository.save(room);
     }
 
     @Override

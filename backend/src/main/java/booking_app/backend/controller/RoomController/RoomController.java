@@ -9,6 +9,8 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,7 +20,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @Tag(name = "Rooms", description = "Rooms endpoints")
 @RestController
@@ -59,6 +64,25 @@ public class RoomController {
         return roomService.updateRoom(id, requestDto);
     }
 
+    @PostMapping("/{roomId}/image")
+    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
+    @Operation(summary = "Upload room image",
+            description = "Upload an image for a room")
+    public ResponseEntity<String> uploadRoomImage(@PathVariable Long roomId, @RequestParam("image") MultipartFile imageFile) {
+        roomService.addRoomImage(roomId, imageFile);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Image uploaded successfully");
+    }
+
+    @DeleteMapping("/{roomId}/image/{imageIndex}")
+    @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
+    @Operation(summary = "Delete a room image",
+            description = "Delete a specific image from a room")
+    public ResponseEntity<String> deleteRoomImage(@PathVariable Long roomId, @PathVariable int imageIndex) {
+        roomService.removeRoomImage(roomId, imageIndex);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Image deleted successfully");
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMINISTRATOR')")
     @Operation(summary = "Delete a room",

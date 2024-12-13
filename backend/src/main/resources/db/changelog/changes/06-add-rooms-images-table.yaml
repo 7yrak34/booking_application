@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 06-add-rooms-images-table
+      author: KHmil
+      changes:
+        - createTable:
+            tableName: rooms_images
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: rooms_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: images
+                  type: BLOB
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: rooms_images
+            baseColumnNames: rooms_id
+            constraintName: fk_rooms_images_rooms
+            referencedTableName: rooms
+            referencedColumnNames: id
+            onDelete: CASCADE

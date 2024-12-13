@@ -72,5 +72,4 @@ public class GlobalExceptionHandler {
             PasswordException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
-
 }

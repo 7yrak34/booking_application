@@ -1,0 +1,8 @@
+databaseChangeLog:
+    - changeSet:
+          id: 07-drop-image-colum
+          author: KHmil
+          changes:
+              - dropColumn:
+                    tableName: rooms
+                    columnName: image

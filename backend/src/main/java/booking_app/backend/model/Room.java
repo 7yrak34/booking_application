@@ -1,7 +1,9 @@
 package booking_app.backend.model;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -10,10 +12,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -51,16 +55,22 @@ public class Room {
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
-    @Column(name = "is_available", nullable = false)
+    @Column(name = "is_available", nullable = false, columnDefinition = "TINYINT(1)")
     private boolean isAvailable = true;
 
-    @Column(name = "is_deleted", nullable = false)
+    @Column(name = "is_deleted", nullable = false, columnDefinition = "TINYINT(1)")
     private boolean isDeleted = false;
 
-    @Lob
-    @Column(name = "image", columnDefinition = "BLOB")
     @ToString.Exclude
-    private byte[] image;
+    @EqualsAndHashCode.Exclude
+    @ElementCollection
+    @CollectionTable(name = "rooms_images", joinColumns = @JoinColumn(name = "rooms_id"))
+    @Column(name = "images", columnDefinition = "BLOB")
+    List<byte[]> roomsImages = new ArrayList<>();
+
+    public void addImageToRoom(byte [] image) {
+        roomsImages.add(image);
+    }
 
     public enum RoomType {
         SINGLE,
@@ -73,4 +83,3 @@ public class Room {
         TWIN
     }
 }
-
