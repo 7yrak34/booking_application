@@ -18,7 +18,9 @@ export const App = () => {
         <Menu isMenuOpen={isMenuOpen} />
       )}
 
-      <Outlet />
+      <main className="app__main">
+        <Outlet />
+      </main>
 
       <Footer />
     </div>
