@@ -23,13 +23,3 @@ html {
   scroll-behavior: smooth;
   color: $text-color;
 }
-
-.app {
-  &__main {
-    min-height: calc(100vh - $header-height - $footer-height);
-    
-    @include on-desktop {
-      min-height: calc(100vh - $header-height-desktop - $footer-height-desktop);
-    }
-  }
-}
