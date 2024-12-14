@@ -12,5 +12,4 @@ public class RoomDtoWithoutHotelIds {
     private String type;
     private BigDecimal price;
     private boolean isAvailable;
-    private byte[] image;
 }

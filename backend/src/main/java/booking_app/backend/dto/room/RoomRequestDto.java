@@ -24,6 +24,4 @@ public class RoomRequestDto {
     private BigDecimal price;
     @NotNull
     private boolean isAvailable;
-    @NotNull
-    private byte[] image;
 }

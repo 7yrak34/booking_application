@@ -11,5 +11,4 @@ public class RoomResponseDto {
     private String description;
     private String type;
     private BigDecimal price;
-    private String image;
 }
