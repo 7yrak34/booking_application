@@ -20,7 +20,7 @@ services:
   app:
     build: .
     ports:
-      - "$SPRING_DOCKER_PORT:$SPRING_LOCAL_PORT"
+      - "$SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:${SPRING_DATASOURCE_PORT}/${MYSQLDB_DATABASE}
       SPRING_DATASOURCE_USERNAME: ${MYSQLDB_USER}

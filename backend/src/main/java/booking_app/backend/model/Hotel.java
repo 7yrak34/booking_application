@@ -8,8 +8,10 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
@@ -36,10 +38,23 @@ public class Hotel {
     @CollectionTable(name = "hotel_images", joinColumns = @JoinColumn(name = "hotel_id"))
     @Column(name = "image", columnDefinition = "BLOB")
     private List<byte[]> hotelImages = new ArrayList<>();
+    @ElementCollection(targetClass = Amenity.class)
+    @CollectionTable(name = "hotel_amenities", joinColumns = @JoinColumn(name = "hotel_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "amenity")
+    private List<Amenity> amenities = new ArrayList<>();
     @Column(name = "is_deleted", nullable = false, columnDefinition = "TINYINT(1)")
     private boolean isDeleted = false;
 
     public void addImageToHotel(byte[] image) {
         hotelImages.add(image);
+    }
+
+    public enum Amenity {
+        BREAKFAST,
+        PARKING,
+        AIR_CONDITIONING,
+        TRANSFER,
+        EARLY_CHECKIN
     }
 }

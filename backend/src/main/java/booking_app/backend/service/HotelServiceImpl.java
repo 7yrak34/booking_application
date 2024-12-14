@@ -32,6 +32,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<HotelDto> getAllHotels() {
         List<HotelDto> hotels = hotelRepository.findAll().stream()
                 .map(hotelMapper::toDto)
@@ -40,6 +41,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public HotelDto getHotelById(Long id) {
         Hotel hotel = hotelRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Can't find hotel by id: " + id));
