@@ -11,3 +11,5 @@ databaseChangeLog:
       file: /db/changelog/changes/06-add-rooms-images-table.yaml
   - include:
       file: /db/changelog/changes/07-drop-image-colum.yaml
+  - include:
+      file: /db/changelog/changes/08-create-hotel-amenities-table.yaml
