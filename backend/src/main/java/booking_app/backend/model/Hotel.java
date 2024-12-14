@@ -50,7 +50,7 @@ public class Hotel {
         hotelImages.add(image);
     }
 
-    enum Amenity {
+    public enum Amenity {
         BREAKFAST,
         PARKING,
         AIR_CONDITIONING,
