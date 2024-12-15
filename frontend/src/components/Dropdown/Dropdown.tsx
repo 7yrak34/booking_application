@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, } from 'react';
 import './Dropdown.scss';
 import classNames from 'classnames';
-import { Icon } from '../Icon';
-import { IconType } from '../../types/IconType';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
   title: string;
-  icon: IconType;
+  icon: IconProp;
   isOpen: boolean;
   setIsOpen: (arg: boolean) => void;
   children: React.ReactNode;
@@ -48,7 +48,7 @@ export const Dropdown: React.FC<Props> = ({
           setIsDropdownOpen(!isOpen);
         }}
       >
-        <Icon iconType={icon} />
+        <FontAwesomeIcon icon={icon} />
 
         {title}
       </button>

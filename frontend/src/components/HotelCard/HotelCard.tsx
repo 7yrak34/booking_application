@@ -1,7 +1,7 @@
 import React from 'react';
 import './HotelCard.scss';
-import { Icon } from '../Icon';
-import { IconType } from '../../types/IconType';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ICON_NAMES } from '../../icons';
 
 interface Props {
   image: string,
@@ -30,7 +30,7 @@ export const HotelCard: React.FC<Props> = ({
         </h3>
 
         <div className="hotel-card__location">
-          <Icon iconType={IconType.location} />
+          <FontAwesomeIcon icon={ICON_NAMES.location} />
 
           {location}
         </div>

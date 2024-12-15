@@ -4,8 +4,8 @@ import './BookingForm.scss';
 import dayjs from 'dayjs';
 import { Counter } from '../Counter';
 import { useMemo, useState } from 'react';
-import { IconType } from '../../types/IconType';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { ICON_NAMES } from '../../icons';
 
 const cities = ['Odessa', 'Kiev', 'Kharkiv', 'Lviv', 'Dnepr'];
 const minRooms = 1;
@@ -87,7 +87,7 @@ export const BookingForm = () => {
     <div className="booking-form">
       <Dropdown
         title={selectedOption ? selectedOption : 'City'}
-        icon={IconType.location}
+        icon={ICON_NAMES.map}
         isOpen={isDropdownOpen}
         setIsOpen={setIsDropdownOpen}
       >
@@ -95,7 +95,7 @@ export const BookingForm = () => {
           {cities.map(city => (
             <li
               key={city}
-              className="booking-form__option"
+              className="booking-form__option booking-form__option--pointer"
               onClick={() => {
                 setSelectedOption(city);
                 setIsDropdownOpen(false);
@@ -109,7 +109,7 @@ export const BookingForm = () => {
 
       <Dropdown
         title={startDate ? dayjs(startDate).format('dddd, DD MMMM YYYY') : 'Check in'}
-        icon={IconType.calendar}
+        icon={ICON_NAMES.calendar}
         isOpen={isStartCalendarShown}
         setIsOpen={setIsStartCalendarShown}
       >
@@ -128,7 +128,7 @@ export const BookingForm = () => {
 
       <Dropdown
         title={endDate ? dayjs(endDate).format('dddd, DD MMMM YYYY') : 'Check out'}
-        icon={IconType.calendar}
+        icon={ICON_NAMES.calendar}
         isOpen={isEndCalendarShown}
         setIsOpen={setIsEndCalendarShown}
       >
@@ -147,7 +147,7 @@ export const BookingForm = () => {
 
       <Dropdown
         title={guestsDropdownTitle}
-        icon={IconType.user}
+        icon={ICON_NAMES.user}
         isOpen={isGuestsShown}
         setIsOpen={setIsGuestsShown}
       >

@@ -1,7 +1,7 @@
 import React from 'react';
-import { IconType } from '../../types/IconType';
-import { Icon } from '../Icon';
 import './Counter.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ICON_NAMES } from '../../icons';
 
 interface Props {
   count: number;
@@ -15,7 +15,7 @@ export const Counter: React.FC<Props> = ({ count, increaseCount, decreaseCount }
       className="counter__button"
       onClick={increaseCount}
     >
-      <Icon iconType={IconType.plus} />
+      <FontAwesomeIcon icon={ICON_NAMES.plus} />
     </button>
 
     {count}
@@ -24,7 +24,7 @@ export const Counter: React.FC<Props> = ({ count, increaseCount, decreaseCount }
       className="counter__button"
       onClick={decreaseCount}
     >
-      <Icon iconType={IconType.minus} />
+      <FontAwesomeIcon icon={ICON_NAMES.minus} />
     </button>
   </div>
 );
