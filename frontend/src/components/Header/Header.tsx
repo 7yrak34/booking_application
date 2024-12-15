@@ -21,7 +21,7 @@ export const Header: React.FC<Props> = ({ isMenuOpen, setIsMenuOpen }) => {
       {screenSize === ScreenType.isMobile && (
         <button
           type="button"
-          className="header__menu-button"
+          className="header__button"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <div className={classNames('header__menu-button', {
