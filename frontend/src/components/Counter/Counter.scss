@@ -2,10 +2,12 @@
 
 .counter {
   display: flex;
+  width: 100px;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
 
   &__button {
+    cursor: pointer;
     border: 1px solid #e2e2e2;
     padding: 7px;
     display: flex;
@@ -14,6 +16,7 @@
     & svg {
       width: 14px;
       height: 14px;
+      color: $primary-color;
     }
   }
 }

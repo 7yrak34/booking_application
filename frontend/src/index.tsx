@@ -1,3 +1,4 @@
+import './icons';
 import { createRoot } from 'react-dom/client';
 import { Root } from './Root';
 import { ScreenSizeProvider } from './components/ScreenSizeProvider/ScreenSizeProvider';
