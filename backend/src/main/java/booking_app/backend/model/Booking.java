@@ -20,17 +20,17 @@ public class Booking {
     @Column(name = "id")
     private Long id;
     @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "room_id", nullable = false)
     private Room room;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
     private LocalDateTime dateOfCreated;
     @Column(name = "check_in_date", nullable = false)
     private LocalDate checkInDate;
     @Column(name = "check_out_date", nullable = false)
     private LocalDate checkOutDate;
-    @Column(name = "total_price")
+    @Column(name = "total_price", nullable = false)
     private int totalPrice;
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
