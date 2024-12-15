@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -31,10 +32,10 @@ public class Booking {
     @Column(name = "check_out_date", nullable = false)
     private LocalDate checkOutDate;
     @Column(name = "total_price", nullable = false)
-    private int totalPrice;
+    private BigDecimal totalPrice;
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private BookingStatus status;
+    private BookingStatus status = BookingStatus.PENDING;
     @Column(name = "is_deleted", nullable = false, columnDefinition = "TINYINT(1)")
     private boolean isDeleted = false;
 

@@ -29,7 +29,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: date_of_created
-                  type: DATE
+                  type: DATETIME
                   constraints:
                     nullable: false
               - column:
@@ -44,7 +44,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: total_price
-                  type: INT
+                  type: DECIMAL(10, 2)
                   constraints:
                     nullable: false
               - column:
