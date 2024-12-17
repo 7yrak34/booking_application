@@ -1,5 +1,6 @@
 package booking_app.backend.exception.handler;
 
+import booking_app.backend.exception.BookingException;
 import booking_app.backend.exception.EntityNotFoundException;
 import booking_app.backend.exception.PasswordException;
 import booking_app.backend.exception.RegistrationException;
@@ -49,6 +50,22 @@ public class GlobalExceptionHandler {
         );
 
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(BookingException.class)
+    public ResponseEntity<ErrorResponse> handleBookingException(
+            BookingException ex,
+            HttpServletRequest request
+    ) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.CONFLICT.value(),
+                HttpStatus.CONFLICT.getReasonPhrase(),
+                ex.getMessage(),
+                request.getRequestURI(),
+                List.of(ex.getMessage())
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(RegistrationException.class)

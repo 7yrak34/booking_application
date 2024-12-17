@@ -75,6 +75,10 @@ public class User implements UserDetails {
         return !isDeleted;
     }
 
+    public boolean hasRoleAdmin() {
+        return role.equals(UserRole.ROLE_ADMIN);
+    }
+
     public enum UserRole {
         ROLE_ADMIN,
         ROLE_USER
