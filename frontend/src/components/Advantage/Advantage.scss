@@ -1,0 +1,30 @@
+@import '../../styles/imports';
+
+.advantage {
+  width: 100%;
+  padding: 15px 7px;
+  border: 1px solid #ddd;
+
+  @include on-desktop {
+    padding-inline: 15px;
+  }
+
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  &__image {
+    width: 60px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  &__title {
+    font-size: 21px;
+    font-weight: 700;
+  }
+}
