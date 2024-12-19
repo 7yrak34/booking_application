@@ -32,7 +32,6 @@ public class HotelController {
     }
 
     @GetMapping
-    @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Get all hotels", description = "Pull all hotels from the DB.")
     public List<HotelDto> getAllHotels() {
         List<HotelDto> hotels = hotelService.getAllHotels();
@@ -40,7 +39,6 @@ public class HotelController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Get hotel by id", description = "Retrieve a hotel by it's id.")
     public HotelDto getHotelById(@PathVariable Long id) {
         HotelDto hotel = hotelService.getHotelById(id);
