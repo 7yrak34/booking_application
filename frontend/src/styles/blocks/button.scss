@@ -1,0 +1,11 @@
+@import '../vars';
+
+.button {
+  cursor: pointer;
+  background-color: $secondary-color;
+  color: $white-color;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 15px;
+  border-radius: 3px;
+}

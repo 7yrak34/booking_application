@@ -44,12 +44,7 @@
   }
 
   &__confirm-button {
-    background-color: $secondary-color;
-    color: $white-color;
-    font-size: 18px;
-    font-weight: 600;
     width: 100%;
-    padding: 15px;
 
     @include on-desktop {
       width: fit-content;
