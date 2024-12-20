@@ -25,6 +25,16 @@ html {
 }
 
 .app {
+  &--no-scroll {
+    max-height: 100vh;
+    overflow: hidden;
+
+    @include on-tablet {
+      max-height: unset;
+      overflow: auto;
+    }
+  }
+
   &__main {
     min-height: calc(100vh - $header-height - $footer-height);
     

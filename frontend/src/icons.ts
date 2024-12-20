@@ -1,6 +1,6 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faLocationDot, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
-import { faMap, faCalendar, faCircleUser } from "@fortawesome/free-regular-svg-icons";
+import { faMap, faCalendar, faCircleUser, faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
 library.add(
   faLocationDot,
@@ -9,6 +9,7 @@ library.add(
   faCircleUser,
   faPlus,
   faMinus,
+  faEnvelope,
 );
 
 export const ICON_NAMES = {
@@ -18,4 +19,5 @@ export const ICON_NAMES = {
   user: faCircleUser,
   plus: faPlus,
   minus: faMinus,
+  envelope: faEnvelope,
 };

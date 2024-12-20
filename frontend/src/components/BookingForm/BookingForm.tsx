@@ -166,7 +166,7 @@ export const BookingForm = () => {
         </ul>
       </Dropdown>
 
-      <button className="booking-form__confirm-button">
+      <button className="button booking-form__confirm-button">
         Search
       </button>
     </div>
