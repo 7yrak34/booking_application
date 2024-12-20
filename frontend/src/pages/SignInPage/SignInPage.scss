@@ -1,0 +1,54 @@
+@import '../../styles/imports';
+
+.sign-in-page {
+  padding-block: 60px;
+  position: relative;
+
+  @include content-padding-inline;
+
+  &__content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  &__inputs {
+    display: grid;
+    gap: 35px;
+    margin-bottom: 25px;
+  }
+
+  &__input-container {
+    display: grid;
+    gap: 8px;
+  }
+
+  &__label {
+    font-weight: 700;
+  }
+
+  &__input {
+    height: 50px;
+    border: 1px solid #baddf0;
+    border-radius: 3px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
