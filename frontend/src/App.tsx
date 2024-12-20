@@ -2,7 +2,7 @@ import './App.scss';
 import { Outlet } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Menu } from './components/Menu';
 import { ScreenSizeContext, ScreenType } from './components/ScreenSizeProvider/ScreenSizeProvider';
 import classNames from 'classnames';
