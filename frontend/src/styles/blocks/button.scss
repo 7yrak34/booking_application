@@ -8,4 +8,10 @@
   font-weight: 600;
   padding: 15px;
   border-radius: 3px;
+
+  &--secondary {
+    color: #797979;
+    border: 2px solid #dcdcdc;
+    background-color: $white-color;
+  }
 }
