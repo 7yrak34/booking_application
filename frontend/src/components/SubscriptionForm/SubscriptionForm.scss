@@ -1,0 +1,122 @@
+@import '../../styles/imports';
+
+.subscription-form {
+  @include content-padding-inline;
+
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  padding-top: 70px;
+  padding-bottom: 40px;
+  background-color: $light-blue-color;
+  background-image: url(../../images/hot-air-balloon.png);
+  background-size: 55px;
+  background-repeat: no-repeat;
+  background-position: 90% 23px;
+
+  @include on-desktop {
+    background-image: url(../../images/subscription-bg.png);
+    background-size: contain;
+    background-position: 50%;
+  }
+
+  &__title {
+    font-size: 21px;
+    font-weight: 700;
+    color: $text-secondary-color;
+    margin-bottom: 17px;
+
+    @include on-tablet {
+      font-size: 25px;
+    }
+
+    @include on-desktop {
+      font-size: 30px;
+    }
+  }
+
+  &__text {
+    font-size: 16px;
+    line-height: 20px;
+
+    &--margin {
+      margin-bottom: 13px;
+    }
+  }
+
+  &__content {
+    @include on-desktop {
+      max-width: 70%;
+      padding: 40px 85px;
+      background-color: rgba($white-color, 0.5);
+      border-radius: 3px;
+      text-align: center;
+    }
+  }
+
+  &__bottom {
+    display: grid;
+    gap: 15px;
+    background-color: rgba($white-color, 0.5);
+    border-radius: 3px;
+    padding: 26px 12px;
+
+    @include on-desktop {
+      background-color: unset;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @include on-desktop {
+      border: 1px solid #D9E7ED;
+      flex-direction: row;
+      gap: 0;
+      padding: 5px;
+      background-color: $white-color;
+    }
+  }
+
+  &__input-container {
+    width: 100%;
+    background-color: $white-color;
+    border: 1px solid #D9E7ED;
+    border-radius: 3px;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    @include on-desktop {
+      width: 60%;
+      border: 0;
+    }
+  }
+
+  &__icon {
+    color: $secondary-color;
+    width: 24px;
+    height: 24px;
+  }
+
+  &__input {
+    padding-block: 15px;
+    width: 100%;
+    border: 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__button {
+    width: 100%;
+
+    @include on-desktop {
+      width: 40%;
+    }
+  }
+}
