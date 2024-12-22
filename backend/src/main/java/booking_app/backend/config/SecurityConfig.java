@@ -1,5 +1,6 @@
 package booking_app.backend.config;
 
+import booking_app.backend.config.matcher.CustomRequestMatcher;
 import booking_app.backend.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -32,13 +33,19 @@ public class SecurityConfig {
     }
 
     @Bean
+    public CustomRequestMatcher customRequestMatcher() {
+        return new CustomRequestMatcher();
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers("/auth/**",
-                                        "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**")
+                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/auth/**")
+                                .permitAll()
+                                .requestMatchers(customRequestMatcher())
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()

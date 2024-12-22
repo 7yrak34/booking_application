@@ -45,7 +45,6 @@ public class HotelController {
         return hotel;
     }
 
-    @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Get hotel images", description = "Retrieve hotel images by it's id.")
     @GetMapping("/{id}/images")
     public ResponseEntity<List<String>> getHotelImages(@PathVariable Long id) {
