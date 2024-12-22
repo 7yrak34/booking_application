@@ -21,5 +21,4 @@ public class CustomRequestMatcher implements RequestMatcher {
                 publicPatterns.stream().anyMatch(pattern -> pattern.matcher(requestURI).matches());
         return isPublic;
     }
-
 }
